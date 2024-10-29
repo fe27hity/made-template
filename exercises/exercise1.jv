@@ -3,6 +3,7 @@ pipeline AirportPipeline {
     AirportExtractor
         -> AirportTextFileInterpreter
         -> AirportCSVInterpreter
+        -> AirportColumnDeleter
         -> AirportTableInterpreter
         -> AirportLoader;
 
@@ -13,8 +14,15 @@ pipeline AirportPipeline {
     block AirportTextFileInterpreter oftype TextFileInterpreter { }
 
     block AirportCSVInterpreter oftype CSVInterpreter {
-        delimiter: ';';
-     }
+        enclosing: '"';
+        delimiter: ";";
+        enclosingEscape: '"';
+    }
+
+    block AirportColumnDeleter oftype ColumnDeleter {
+        delete: [ column J, column K, column L, column M
+        ];
+    }
 
     block AirportTableInterpreter oftype TableInterpreter {
         header: true;

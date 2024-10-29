@@ -13,9 +13,7 @@ pipeline AirportPipeline {
     block AirportTextFileInterpreter oftype TextFileInterpreter { }
 
     block AirportCSVInterpreter oftype CSVInterpreter {
-        enclosing: '"';
         delimiter: ';';
-	    enclosingEscape: '"';
      }
 
     block AirportTableInterpreter oftype TableInterpreter {
@@ -29,7 +27,7 @@ pipeline AirportPipeline {
             "ICAO" oftype text,
             "Latitude" oftype decimal,
             "Longitude" oftype decimal,
-            "Altitude" oftype decimal
+            "Altitude" oftype integer
         ];
     }
 

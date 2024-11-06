@@ -14,27 +14,27 @@ Impact of Climate-Related Events on Public Support for Climate Action in the Uni
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-Climate change is a global issue, and large emitters like the U.S. play a critical role in addressing it. However, political division complicates action, as major parties have opposing views on climate change. The median voter’s stance varies significantly, and personal motivations remain unclear. I aim to explore whether individuals affected by climate-related events (e.g., tornadoes, storms, floods) are more likely to prioritize climate change as a personal concern.
+Climate change is a global issue, and large emitters like the U.S. play a critical role in addressing it. However, political division complicates action, as major parties have opposing views on climate change. The median voter’s stance varies significantly, and personal motivations remain unclear. This project aims to explore whether individuals living in areas that are more affected by climate-related events (e.g., tornadoes, storms, floods; and weather / storm events which are increased in their frequency by climate change) are more likely to prioritize climate change as a personal and political concern.
 
- This projects analyzes XY, using method A. The results can give insights into...
+This project analysizes the relationship between the financial damages caused by weather events (e.g. storms) and the respective public opinion about the importance of climate change as a political topic per U.S state. To see whether there might be a connection between those variable a correlation analysis is choosen as the scientific method.
 
 ## Datasources
 
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
-### Datasource1: ExampleSource
+### Datasource1: Storm Events Database 2020
 * Metadata URL: [https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/Storm-Data-Bulk-csv-Format.pdf](https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/Storm-Data-Bulk-csv-Format.pdf)
 * Data URL: [https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/StormEvents_details-ftp_v1.0_d2020_c20240620.csv.gz](https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/StormEvents_details-ftp_v1.0_d2020_c20240620.csv.gz)
 * Data Type: CSV
 
-Short description of the DataSource.
+This dataset represents the summarized statistics about the financial damages and quantified damages of property aswell as fataliities. Furthermore the data contains information about the source of the reported data entry and more details about the respective weather event which are of lesser importance. The damages are grouped by county and states. It represents all the data of the year 2020 published by the National Centers for Environmental Information (National oceanic and atmospheric administration).
 
-### Datasource2: ExampleSource
+### Datasource2: Yale Climate Change Opinion Map 2020
 * Metadata URL: [https://raw.githubusercontent.com/yaleschooloftheenvironment/Yale-Climate-Change-Opinion-Maps/refs/heads/main/YCOM5.0_2020_webdata_Metadata.csv](https://raw.githubusercontent.com/yaleschooloftheenvironment/Yale-Climate-Change-Opinion-Maps/refs/heads/main/YCOM5.0_2020_webdata_Metadata.csv)
 * Data URL: [https://raw.githubusercontent.com/yaleschooloftheenvironment/Yale-Climate-Change-Opinion-Maps/refs/heads/main/YCOM5.0_2020_webdata_2020-08-19.csv](https://raw.githubusercontent.com/yaleschooloftheenvironment/Yale-Climate-Change-Opinion-Maps/refs/heads/main/YCOM5.0_2020_webdata_2020-08-19.csv)
 * Data Type: CSV
 
-Short description of the DataSource.
+This dataset represents the summarized statistics about the public opinion on climate change related question regarding importance, countermeasures, awareness on the topic, etc. It averages the importance from 0% to 100% for each question per U.S. state in the year of 2020. The data was published and evaluated through polls by the private Yale University through their climate change action program.
 
 ## Work Packages
 

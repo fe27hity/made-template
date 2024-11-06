@@ -43,10 +43,10 @@ Short description of the DataSource.
 1. Familiarize with data sets  [#1][i1]
 2. Creation of a Project Plan  [#2][i2]
 3. Creation of a Project Data Pipeline  [#3][i3]
-4. Finalzing the Project's Data Report  [#4][i4]
+4. Finalizing the Project's Data Report  [#4][i4]
 5. Introduction of Automated Testing  [#5][i5]
 6. Introduction of Continuous Integration  [#6][i6]
-7. Finalzing the Project's Final Report  [#7][i7]
+7. Finalizing the Project's Final Report  [#7][i7]
 
 [i1]: https://github.com/fe27hity/made-template/issues/1
 [i2]: https://github.com/fe27hity/made-template/issues/2

@@ -1,0 +1,100 @@
+pipeline WeatherPipeline {
+
+    WeatherExtractor
+        -> WeatherTextFileInterpreter
+        -> WeatherCSVInterpreter
+        -> WeatherTableInterpreter
+        -> WeatherLoader;
+
+    block WeatherExtractor oftype LocalFileExtractor {
+        filePath: "weather_events.csv";
+    }
+
+    block WeatherTextFileInterpreter oftype TextFileInterpreter { }
+
+    block WeatherCSVInterpreter oftype CSVInterpreter {
+        delimiter: ",";
+        enclosing: '"';
+    }
+
+    block WeatherTableInterpreter oftype TableInterpreter {
+        header: true;
+        columns: [
+            "STATE" oftype text,
+            "DAMAGE_PROPERTY" oftype text,
+            "DAMAGE_CROPS" oftype text,
+        ];
+    }
+
+    block WeatherLoader oftype SQLiteLoader {
+        table: "weather_event_damages";
+        file: "../data/weather_event_damages.sqlite";
+    }
+}
+
+pipeline PoliticalOpinionPipeline {
+
+    PoliticalOpinionExtractor
+        -> PoliticalOpinionTextFileInterpreter
+        -> PoliticalOpinionCSVInterpreter
+        -> PoliticalOpinionTableInterpreter
+        -> PoliticalOpinionLoader;
+
+    block PoliticalOpinionExtractor oftype HttpExtractor {
+        url: "https://raw.githubusercontent.com/yaleschooloftheenvironment/Yale-Climate-Change-Opinion-Maps/refs/heads/main/YCOM5.0_2020_webdata_2020-08-19.csv";
+    }
+
+    block PoliticalOpinionTextFileInterpreter oftype TextFileInterpreter { }
+
+    block PoliticalOpinionCSVInterpreter oftype CSVInterpreter {
+        delimiter: ",";
+        enclosing: '"';
+    }
+
+    block PoliticalOpinionTableInterpreter oftype TableInterpreter {
+        header: true;
+        columns: [
+            "GeoType" oftype text,
+            "GeoName" oftype text,
+            "fundrenewables" oftype decimal,
+            "fundrenewablesOppose" oftype decimal,
+            "regulate" oftype decimal,
+            "regulateOppose" oftype decimal,
+            "CO2limits" oftype decimal,
+            "CO2limitsOppose" oftype decimal,
+            "reducetax" oftype decimal,
+            "reducetaxOppose" oftype decimal,
+            "supportRPS" oftype decimal,
+            "supportRPSOppose" oftype decimal,
+            "rebates" oftype decimal,
+            "rebatesOppose" oftype decimal,
+            "drillANWR" oftype decimal,
+            "drillANWROppose" oftype decimal,
+            "drilloffshore" oftype decimal,
+            "drilloffshoreOppose" oftype decimal,
+            "teachGW" oftype decimal,
+            "teachGWOppose" oftype decimal,
+            "corporations" oftype decimal,
+            "corporationsOppose" oftype decimal,
+            "president" oftype decimal,
+            "presidentOppose" oftype decimal,
+            "congress" oftype decimal,
+            "congressOppose" oftype decimal,
+            "governor" oftype decimal,
+            "governorOppose" oftype decimal,
+            "localofficials" oftype decimal,
+            "localofficialsOppose" oftype decimal,
+            "citizens" oftype decimal,
+            "citizensOppose" oftype decimal,
+            "gwvoteimp" oftype decimal,
+            "gwvoteimpOppose" oftype decimal,
+            "priority" oftype decimal,
+            "priorityOppose" oftype decimal,
+        ];
+    }
+
+    block PoliticalOpinionLoader oftype SQLiteLoader {
+        table: "political_opinion";
+        file: "../data/political_opinion.sqlite";
+    }
+}

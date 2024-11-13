@@ -4,6 +4,7 @@ pipeline WeatherPipeline {
         -> WeatherTextFileInterpreter
         -> WeatherCSVInterpreter
         -> WeatherTableInterpreter
+        -> FinancialUnitTransformer
         -> WeatherLoader;
 
     block WeatherExtractor oftype LocalFileExtractor {
@@ -17,13 +18,29 @@ pipeline WeatherPipeline {
         enclosing: '"';
     }
 
+
     block WeatherTableInterpreter oftype TableInterpreter {
         header: true;
         columns: [
             "STATE" oftype text,
-            "DAMAGE_PROPERTY" oftype text,
-            "DAMAGE_CROPS" oftype text,
+            "DAMAGE_PROPERTY" oftype decimal,
+            "DAMAGE_CROPS" oftype decimal,
         ];
+    }
+
+    transform ThousandAndMillionToDigits {
+        from KandM oftype text;
+        to Digits oftype decimal;
+
+        Digits: KandM replace /(\d+)\.(\d+)K/ with "0000";
+    }
+
+    block FinancialUnitTransformer oftype TableTransformer {
+        inputColumns: [
+            'DAMAGE_PROPERTY'
+        ];
+        outputColumn: 'DAMAGE_PROPERTY';
+        uses: ThousandAndMillionToDigits;
     }
 
     block WeatherLoader oftype SQLiteLoader {
@@ -54,7 +71,7 @@ pipeline PoliticalOpinionPipeline {
     block PoliticalOpinionTableInterpreter oftype TableInterpreter {
         header: true;
         columns: [
-            "GeoType" oftype text,
+            "GeoType" oftype State,
             "GeoName" oftype text,
             "fundrenewables" oftype decimal,
             "fundrenewablesOppose" oftype decimal,
@@ -97,4 +114,16 @@ pipeline PoliticalOpinionPipeline {
         table: "political_opinion";
         file: "../data/political_opinion.sqlite";
     }
+}
+
+valuetype State oftype text {
+    constraints: [
+        StateFilter,
+    ];
+}
+
+constraint StateFilter oftype AllowlistConstraint {
+    allowlist: [
+        "State",
+    ];
 }

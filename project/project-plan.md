@@ -26,6 +26,7 @@ This project analysizes the relationship between the financial damages caused by
 * Metadata URL: [https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/Storm-Data-Bulk-csv-Format.pdf](https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/Storm-Data-Bulk-csv-Format.pdf)
 * Data URL: [https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/StormEvents_details-ftp_v1.0_d2020_c20240620.csv.gz](https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/StormEvents_details-ftp_v1.0_d2020_c20240620.csv.gz)
 * Data Type: CSV
+* License: NCEI is part of NOAA, an U.S.A Goverment agency. The NOAA website states that all their data is freely accessible and usable as it's a goverment agency and all goverment data made public by employees in offical duty is freely accessible and redistributable (which this dataset is because "Storm Data is provided by the National Weather Service (NWS) and contain statistics on personal injuries and damage estimates", [https://www.ncei.noaa.gov/archive](https://www.ncei.noaa.gov/archive)).
 
 This dataset represents the summarized statistics about the financial damages and quantified damages of property aswell as fataliities. Furthermore the data contains information about the source of the reported data entry and more details about the respective weather event which are of lesser importance. The damages are grouped by county and states. It represents all the data of the year 2020 published by the National Centers for Environmental Information (National oceanic and atmospheric administration).
 
@@ -33,6 +34,7 @@ This dataset represents the summarized statistics about the financial damages an
 * Metadata URL: [https://raw.githubusercontent.com/yaleschooloftheenvironment/Yale-Climate-Change-Opinion-Maps/refs/heads/main/YCOM5.0_2020_webdata_Metadata.csv](https://raw.githubusercontent.com/yaleschooloftheenvironment/Yale-Climate-Change-Opinion-Maps/refs/heads/main/YCOM5.0_2020_webdata_Metadata.csv)
 * Data URL: [https://raw.githubusercontent.com/yaleschooloftheenvironment/Yale-Climate-Change-Opinion-Maps/refs/heads/main/YCOM5.0_2020_webdata_2020-08-19.csv](https://raw.githubusercontent.com/yaleschooloftheenvironment/Yale-Climate-Change-Opinion-Maps/refs/heads/main/YCOM5.0_2020_webdata_2020-08-19.csv)
 * Data Type: CSV
+* License: MIT License on GitHub
 
 This dataset represents the summarized statistics about the public opinion on climate change related question regarding importance, countermeasures, awareness on the topic, etc. It averages the importance from 0% to 100% for each question per U.S. state in the year of 2020. The data was published and evaluated through polls by the private Yale University through their climate change action program.
 

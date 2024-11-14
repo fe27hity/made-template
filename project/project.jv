@@ -4,7 +4,7 @@ pipeline WeatherPipeline {
         -> WeatherTextFileInterpreter
         -> WeatherCSVInterpreter
         -> WeatherTableInterpreter
-        -> FinancialUnitTransformer
+        -> CasualtiesTransformer
         -> WeatherLoader;
 
     block WeatherExtractor oftype LocalFileExtractor {
@@ -18,29 +18,38 @@ pipeline WeatherPipeline {
         enclosing: '"';
     }
 
-
     block WeatherTableInterpreter oftype TableInterpreter {
         header: true;
         columns: [
             "STATE" oftype text,
-            "DAMAGE_PROPERTY" oftype decimal,
-            "DAMAGE_CROPS" oftype decimal,
+            "DAMAGE_PROPERTY" oftype text,
+            "DAMAGE_CROPS" oftype text,
+            "INJURIES_DIRECT" oftype integer,
+            "INJURIES_INDIRECT" oftype integer,
+            "DEATHS_DIRECT" oftype integer,
+            "DEATHS_INDIRECT" oftype integer
         ];
     }
 
-    transform ThousandAndMillionToDigits {
-        from KandM oftype text;
-        to Digits oftype decimal;
+    transform TotalCasualties {
+        from Injuries_dir oftype integer;
+        from Injuries_ind oftype integer;
+        from Deaths_dir oftype integer;
+        from Deaths_ind oftype integer;
+        to TotalCasualties oftype integer;
 
-        Digits: KandM replace /(\d+)\.(\d+)K/ with "0000";
+        TotalCasualties: Injuries_dir + Injuries_ind + Deaths_dir + Deaths_ind;
     }
 
-    block FinancialUnitTransformer oftype TableTransformer {
+    block CasualtiesTransformer oftype TableTransformer {
         inputColumns: [
-            'DAMAGE_PROPERTY'
+            "INJURIES_DIRECT",
+            "INJURIES_INDIRECT",
+            "DEATHS_DIRECT",
+            "DEATHS_INDIRECT"
         ];
-        outputColumn: 'DAMAGE_PROPERTY';
-        uses: ThousandAndMillionToDigits;
+        outputColumn: 'TOTAL_CASUALITIES';
+        uses: TotalCasualties;
     }
 
     block WeatherLoader oftype SQLiteLoader {
@@ -55,6 +64,7 @@ pipeline PoliticalOpinionPipeline {
         -> PoliticalOpinionTextFileInterpreter
         -> PoliticalOpinionCSVInterpreter
         -> PoliticalOpinionTableInterpreter
+        -> OpinionCombineTransformer
         -> PoliticalOpinionLoader;
 
     block PoliticalOpinionExtractor oftype HttpExtractor {
@@ -108,6 +118,71 @@ pipeline PoliticalOpinionPipeline {
             "priority" oftype decimal,
             "priorityOppose" oftype decimal,
         ];
+    }
+    // out of around 30 items fitting to the question whether an individual supports clime change counter measures,
+    // 24 were picked which seems to be enough for a strong model and internal validity. Most of the "opposed"-items are reveresed and hence the percentage reversed (100% - value).
+    transform OpinionCombiner {
+        from fundrenewables oftype decimal;
+        from fundrenewablesOppose oftype decimal;
+        from regulate oftype decimal;
+        from regulateOppose oftype decimal;
+        from co2limits oftype decimal;
+        from co2limitsOppose oftype decimal;
+        from supportRPS oftype decimal;
+        from supportRPSOppose oftype decimal;
+        from rebates oftype decimal;
+        from rebatesOppose oftype decimal;
+        from corporations oftype decimal;
+        from corporationsOppose oftype decimal;
+        from president oftype decimal;
+        from presidentOppose oftype decimal;
+        from congress oftype decimal;
+        from congressOppose oftype decimal;
+        from governor oftype decimal;
+        from governorOppose oftype decimal;
+        from citizens oftype decimal;
+        from citizensOppose oftype decimal;
+        from gwvoteimp oftype decimal;
+        from gwvoteimpOppose oftype decimal;
+        from priority oftype decimal;
+        from priorityOppose oftype decimal;
+        to AverageOpinionTrend oftype decimal;
+
+        AverageOpinionTrend: (fundrenewables + (100 - fundrenewablesOppose) + regulate + (100 - regulateOppose) + co2limits + (100 - co2limitsOppose) + 
+        supportRPS + (100 - supportRPSOppose) + rebates + (100 - rebatesOppose) + corporations + (100 - corporationsOppose) + president + (100 - presidentOppose) + 
+        congress + (100 - congressOppose) + governor + (100 - governorOppose) + citizens + (100 - citizensOppose) + gwvoteimp + (100 - gwvoteimpOppose) + priority + 
+        (100 - priorityOppose)) / 24;
+    }
+
+    block OpinionCombineTransformer oftype TableTransformer {
+        inputColumns: [
+            "fundrenewables",
+            "fundrenewablesOppose",
+            "regulate",
+            "regulateOppose",
+            "CO2limits",
+            "CO2limitsOppose",
+            "supportRPS",
+            "supportRPSOppose",
+            "rebates",
+            "rebatesOppose",
+            "corporations",
+            "corporationsOppose",
+            "president",
+            "presidentOppose",
+            "congress",
+            "congressOppose",
+            "governor",
+            "governorOppose",
+            "citizens",
+            "citizensOppose",
+            "gwvoteimp",
+            "gwvoteimpOppose",
+            "priority",
+            "priorityOppose"
+        ];
+        outputColumn: 'AverageOpinionTrend';
+        uses: OpinionCombiner;
     }
 
     block PoliticalOpinionLoader oftype SQLiteLoader {

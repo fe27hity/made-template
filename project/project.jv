@@ -22,8 +22,6 @@ pipeline WeatherPipeline {
         header: true;
         columns: [
             "STATE" oftype text,
-            "DAMAGE_PROPERTY" oftype text,
-            "DAMAGE_CROPS" oftype text,
             "INJURIES_DIRECT" oftype integer,
             "INJURIES_INDIRECT" oftype integer,
             "DEATHS_DIRECT" oftype integer,
@@ -119,7 +117,7 @@ pipeline PoliticalOpinionPipeline {
             "priorityOppose" oftype decimal,
         ];
     }
-    // out of around 30 items fitting to the question whether an individual supports clime change counter measures,
+    // out of around 36 items fitting to the question whether an individual supports clime change counter measures,
     // 24 were picked which seems to be enough for a strong model and internal validity. Most of the "opposed"-items are reveresed and hence the percentage reversed (100% - value).
     transform OpinionCombiner {
         from fundrenewables oftype decimal;

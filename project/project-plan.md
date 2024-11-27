@@ -7,7 +7,8 @@ Impact of Climate-Related Events on Public Support for Climate Action in the Uni
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-1. Are individuals living in areas with a higher number of direct and indirect casualties from climate-related events more supportive for climate change countermeasures?
+Are people living in states with more casualties caused by climate-related events more likely to support countermeasures against climate change?
+
 
 
 ## Description

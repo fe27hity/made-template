@@ -2,7 +2,7 @@
 
 ## Main Question
 
-Are people living in states with more casualties caused by climate-related events more likely to support countermeasures against climate change?
+### Are people living in states with more casualties caused by climate-related events more likely to support countermeasures against climate change?
 
 ## Datasources
 
@@ -17,16 +17,16 @@ The data published by the National domain-specific data portal of the NOAA and i
 
 #### Example of data structure:
 
-| ...        | STATE      | ...   | INJURIES_DIRECT | INJURIES_INDIRECT | DEATHS_DIRECT | DEATHS_INDIRECT | ...   |
-|------------|------------|-------|-----------------|-------------------|---------------|-----------------| ...   |
-| ...        | GEORGIA    | ...   | 3               | 0                 | 0             | 0               | ...   |
-| ...        | KANSAS     | ...   | 0               | 0                 | 0             | 8               | ...   |
-| ...        | KANSAS     | ...   | 0               | 3                 | 0             | 0               | ...   |
-| ...        | KANSAS     | ...   | 5               | 0                 | 0             | 0               | ...   |
-| ...        | COLORADO   | ...   | 0               | 0                 | 0             | 0               | ...   |
-| ...        | COLORADO   | ...   | 0               | 0                 | 5             | 0               | ...   |
-| ...        | KANSAS     | ...   | 6               | 0                 | 0             | 0               | ...   |
-| ...        | COLORADO   | ...   | 102             | 0                 | 0             | 0               | ...   |
+| someColumn1        | STATE      | someColumn2   | INJURIES_DIRECT | INJURIES_INDIRECT | DEATHS_DIRECT | DEATHS_INDIRECT | someColumn3   |
+|--------------------|------------|---------------|-----------------|-------------------|---------------|-----------------|---------------|
+| ...                | GEORGIA    | ...           | 3               | 0                 | 0             | 0               | ...           |
+| ...                | KANSAS     | ...           | 0               | 0                 | 0             | 8               | ...           |
+| ...                | KANSAS     | ...           | 0               | 3                 | 0             | 0               | ...           |
+| ...                | KANSAS     | ...           | 5               | 0                 | 0             | 0               | ...           |
+| ...                | COLORADO   | ...           | 0               | 0                 | 0             | 0               | ...           |
+| ...                | COLORADO   | ...           | 0               | 0                 | 5             | 0               | ...           |
+| ...                | KANSAS     | ...           | 6               | 0                 | 0             | 0               | ...           |
+| ...                | COLORADO   | ...           | 102             | 0                 | 0             | 0               | ...           |
 
 
 * Metadata URL: [https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/Storm-Data-Bulk-csv-Format.pdf](https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/Storm-Data-Bulk-csv-Format.pdf)
@@ -66,7 +66,7 @@ Then the main jayvee project file is executed. It consists out of the sequential
 
 The following tables show how the data sets would look like after the pipeline in the sqlite files:
 
- GeoType   | GeoName 2                 | CO2limits  | drilloffshore  | ...        | AverageOpinionTrend  |
+| GeoType   | GeoName 2                 | CO2limits  | drilloffshore  | ...        | AverageOpinionTrend  |
 |-----------|---------------------------|------------|----------------|------------|----------------------|
 | State     | Wyoming                   | 70,49      | 85,49          | ...        | 76,99                |
 | State     | Montana                   | 33,45      | 68,98          | ...        | ...                  |

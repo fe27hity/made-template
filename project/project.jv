@@ -67,6 +67,7 @@ pipeline PoliticalOpinionPipeline {
 
     block PoliticalOpinionExtractor oftype HttpExtractor {
         url: "https://raw.githubusercontent.com/yaleschooloftheenvironment/Yale-Climate-Change-Opinion-Maps/refs/heads/main/YCOM5.0_2020_webdata_2020-08-19.csv";
+        retries: 3;
     }
 
     block PoliticalOpinionTextFileInterpreter oftype TextFileInterpreter { }

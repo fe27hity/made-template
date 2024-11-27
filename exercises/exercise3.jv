@@ -94,7 +94,7 @@ valuetype positiveDecimal oftype decimal {
         positiveDecimalValidator
     ];
 }
-constraint positiveDecimalValidator on decimal: value > 0;
+constraint positiveDecimalValidator on decimal: value >= 0;
 
 valuetype valueBetweenZeroAndOne oftype decimal {
     constraints: [

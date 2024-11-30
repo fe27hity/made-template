@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # SQLite3 must be installed to execute the tests. Nessecary for reading the sqlite files and test for content.
+#sudo apt-get install sqlite3
 
 # Test 1: pipeline output files should be present
 testExpectedOutputFilesArePresent() {
@@ -93,6 +94,5 @@ testCorrectColumnsArePresent() {
 }
 
 # Test execution
-
 testExpectedOutputFilesArePresent
 testCorrectColumnsArePresent

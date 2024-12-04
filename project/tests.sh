@@ -85,6 +85,5 @@ testCorrectColumnsArePresent() {
 }
 
 # Test execution
-
 testExpectedOutputFilesArePresent
 testCorrectColumnsArePresent

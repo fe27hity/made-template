@@ -36,7 +36,7 @@ testExpectedOutputFilesArePresent() {
 check_columns() {
     local db_file=$1
     local table_name=$2
-    shift 2 # Discard first two params to read all column arguments with dynamic amount of arguments
+    shift 2 # Discard first two params to read all column arguments with dynamic amount of arguments.
     local expected_columns=("$@") 
     actual_columns=$(sqlite3 "$db_file" "PRAGMA table_info($table_name);" | awk -F'|' '{print $2}')
 

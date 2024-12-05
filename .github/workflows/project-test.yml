@@ -35,4 +35,4 @@ jobs:
       - name: Project tests
         id: ex_feedback
         run: |
-          ./project/tests.sh
+          ./main/project/tests.sh

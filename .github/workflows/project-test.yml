@@ -16,6 +16,12 @@ jobs:
         with:
           path: main
 
+      - name: Checkout exercise feedback
+        uses: actions/checkout@v4
+        with:
+          repository: jvalue/made-exercise-feedback
+          path: grading    
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:

@@ -49,7 +49,7 @@ check_columns() {
     return 0
 }
 
-# Test 2: Outputfile should be present and contain expected columns
+# Test 2: Outputfile should be present and contain expected columns.
 testCorrectColumnsArePresent() {
     local WEATHER_DB_PATH="../data/weather_event_damages.sqlite"
     local POLITICAL_DB_PATH="../data/political_opinion.sqlite"

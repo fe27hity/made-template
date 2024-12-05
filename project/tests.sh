@@ -5,7 +5,7 @@
 
 # Tests are each written in a function as unit test style and called for execution below. Tests are heavily utilizing bash scripting and no jayvee functionality in terms of testing.
 
-# Test 1: pipeline output files should be present
+# Test 1: pipeline output files should be present.
 testExpectedOutputFilesArePresent() {
     local WEATHER_DB_PATH="../data/weather_event_damages.sqlite"
     local POLITICAL_DB_PATH="../data/political_opinion.sqlite"

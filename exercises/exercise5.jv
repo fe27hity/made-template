@@ -1,0 +1,80 @@
+pipeline StopPipeline {
+
+    StopExtractor
+        -> StopZipInterpreter
+        -> StopDataFilePicker
+        -> StopTextFileInterpreter
+        -> StopCSVInterpreter
+    //-> StopGtfsRTInterpreter
+        -> StopTableInterpreter
+        -> StopDataLoader;
+
+    block StopExtractor oftype HttpExtractor {
+        url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
+    }
+
+    block StopZipInterpreter oftype ArchiveInterpreter {
+        archiveType: "zip";
+    }
+
+    block StopDataFilePicker oftype FilePicker {
+        path: './stops.txt';
+    }
+
+    block StopTextFileInterpreter oftype TextFileInterpreter { }
+
+    block StopCSVInterpreter oftype CSVInterpreter {
+        enclosing: '"';
+        enclosingEscape: '"';
+    }
+
+    /*
+    block StopGtfsRTInterpreter oftype GtfsRTInterpreter {
+        entity: "vehicle";
+    }
+    */
+
+    block StopTableInterpreter oftype TableInterpreter {
+        header: true;
+        columns: [
+            "stop_id" oftype integer,
+            "stop_nam" oftype text,
+            "stop_lat" oftype NintyDegreeIntegerType,
+            "stop_lon" oftype NintyDegreeIntegerType,
+            "zone_id" oftype ZoneId,
+        ];
+    }
+
+    block StopDataLoader oftype SQLiteLoader {
+        table: 'stops';
+        file: 'gtfs.sqlite';
+    }
+}
+
+constraint NinetyToMinus90Constraint oftype RangeConstraint{
+    lowerBound: -90;
+    upperBound: 90;
+}
+valuetype NintyDegreeIntegerType oftype decimal {
+    constraints: [
+        NinetyToMinus90Constraint
+    ];
+}
+/*
+valuetype Name oftype text {
+    constraints: [
+        NameRegex,
+    ];
+}
+
+constraint NameRegex oftype RegexConstraint {
+    regex: /^Vogelsang.*$/;
+}
+*/
+constraint ZoneIdConstraint on integer: value == 1925;
+
+valuetype ZoneId oftype integer {
+    constraints: [
+        ZoneIdConstraint
+    ];
+}

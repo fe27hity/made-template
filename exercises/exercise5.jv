@@ -38,7 +38,7 @@ pipeline StopPipeline {
         header: true;
         columns: [
             "stop_id" oftype integer,
-            "stop_nam" oftype text,
+            "stop_name" oftype text,
             "stop_lat" oftype NintyDegreeIntegerType,
             "stop_lon" oftype NintyDegreeIntegerType,
             "zone_id" oftype ZoneId,

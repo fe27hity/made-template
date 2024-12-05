@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - project/**
+      - *
 
 jobs:
   project-tests:
@@ -32,8 +32,7 @@ jobs:
         run: |
           ./grading/ci/setup_jayvee.sh
 
-      # Run grading feedback
-      - name: Exercise feedback
+      - name: Project tests
         id: ex_feedback
         run: |
           ./project/tests.sh

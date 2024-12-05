@@ -31,7 +31,7 @@ testExpectedOutputFilesArePresent() {
     fi
 }
 
-# Helper function
+## Helper function
 
 check_columns() {
     local db_file=$1

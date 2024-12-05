@@ -1,5 +1,8 @@
 pipeline StopPipeline {
 
+
+    // Still to do: GTFS Interpreter and umlaute?
+
     StopExtractor
         -> StopZipInterpreter
         -> StopDataFilePicker

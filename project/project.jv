@@ -63,6 +63,7 @@ pipeline PoliticalOpinionPipeline {
         -> PoliticalOpinionCSVInterpreter
         -> PoliticalOpinionTableInterpreter
         -> OpinionCombineTransformer
+        -> ToUpperCaseTransformer
         -> PoliticalOpinionLoader;
 
     block PoliticalOpinionExtractor oftype HttpExtractor {
@@ -182,6 +183,21 @@ pipeline PoliticalOpinionPipeline {
         ];
         outputColumn: 'AverageOpinionTrend';
         uses: OpinionCombiner;
+    }
+
+    transform ToUpperCase {
+        from geoName oftype text;
+        to geoNameNew oftype text;
+
+        geoNameNew: uppercase geoName;
+    }
+
+    block ToUpperCaseTransformer oftype TableTransformer {
+        inputColumns: [
+            "GeoName",
+        ];
+        outputColumn: 'GeoName';
+        uses: ToUpperCase;
     }
 
     block PoliticalOpinionLoader oftype SQLiteLoader {

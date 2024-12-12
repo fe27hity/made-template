@@ -1,14 +1,10 @@
 pipeline StopPipeline {
 
-
-    // Still to do: GTFS Interpreter and umlaute?
-
     StopExtractor
         -> StopZipInterpreter
         -> StopDataFilePicker
         -> StopTextFileInterpreter
         -> StopCSVInterpreter
-    //-> StopGtfsRTInterpreter
         -> StopTableInterpreter
         -> StopDataLoader;
 
@@ -30,12 +26,6 @@ pipeline StopPipeline {
         enclosing: '"';
         enclosingEscape: '"';
     }
-
-    /*
-    block StopGtfsRTInterpreter oftype GtfsRTInterpreter {
-        entity: "vehicle";
-    }
-    */
 
     block StopTableInterpreter oftype TableInterpreter {
         header: true;

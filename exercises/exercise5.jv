@@ -53,17 +53,7 @@ valuetype NintyDegreeIntegerType oftype decimal {
         NinetyToMinus90Constraint
     ];
 }
-/*
-valuetype Name oftype text {
-    constraints: [
-        NameRegex,
-    ];
-}
 
-constraint NameRegex oftype RegexConstraint {
-    regex: /^Vogelsang.*$/;
-}
-*/
 constraint ZoneIdConstraint on integer: value == 1925;
 
 valuetype ZoneId oftype integer {
